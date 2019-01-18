@@ -178,3 +178,9 @@ Result:
     "total_price": 2
 }
 ```
+
+# Improvements for future
+* Handling duplicate items in cart
+* Writing unit/functional tests
+* lock mechanism for handling `inventory_count`
+* db population script
