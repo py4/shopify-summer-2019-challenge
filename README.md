@@ -1,9 +1,23 @@
 # shopify-summer-2019-challenge
 
+### Running the code:
+
+First build the docker image:
+```
+docker build -t marketplace .
+```
+
+And then run the container:
+```
+docker run -d -p 8000:8000 marketplace
+```
+
 ### Usage:
 
 First create a superuser so the admin can add products to the website through admin panel:
-`./manage.py createsuperuser`
+```
+docker exec -it marketplace python shopify_challenge/manage.py createsuperuser
+```
 Then go to `localhost:8000/admin` and login, and then you can add products (It's also possible by population script)
 
 First the client has to register in the website to get an auth token
