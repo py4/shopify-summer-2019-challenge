@@ -183,5 +183,5 @@ Result:
 * Different error codes for different errors (Conditioning on the returned message in the client is wrong!)
 * Handling duplicate items in cart
 * Writing unit/functional tests
-* lock mechanism for handling `inventory_count`
+* lock/atomicity mechanism for handling `inventory_count`
 * db population script
