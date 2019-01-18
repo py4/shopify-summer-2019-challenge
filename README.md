@@ -180,6 +180,7 @@ Result:
 ```
 
 # Improvements for future
+* Different error codes for different errors (Conditioning on the returned message is wrong!)
 * Handling duplicate items in cart
 * Writing unit/functional tests
 * lock mechanism for handling `inventory_count`
