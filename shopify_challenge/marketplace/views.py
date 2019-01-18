@@ -135,7 +135,7 @@ class CartViewSet(viewsets.ViewSet):
         except:
             return Response({'error': 'quantity cannot be empty'})
 
-        cart = get_object_or_404(Cart, pk=pk)
+        cart = get_object_or_404(Cart.objects.filter(user=request.user), pk=pk)
 
         if cart.complete:
             return Response({'message': 'Cart is already completed'}, status=status.HTTP_400_BAD_REQUEST)
@@ -158,9 +158,10 @@ class CartViewSet(viewsets.ViewSet):
         Errors:
             * Out of stock products
             * Already completed cart
+            * Empty cart
         """
 
-        cart = get_object_or_404(Cart, pk=pk)
+        cart = get_object_or_404(Cart.objects.filter(user=request.user), pk=pk)
         if cart.complete:
             return Response({'message': 'Already completed'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -169,6 +170,9 @@ class CartViewSet(viewsets.ViewSet):
         # Potential threading problem. requires lock
 
         items = cart.cartitem_set.prefetch_related('product').all()
+
+        if not items:
+            return Response({'message': 'Empty cart'}, status=status.HTTP_400_BAD_REQUEST)
 
         for item in items:
             if item.product.inventory_count < item.quantity:
