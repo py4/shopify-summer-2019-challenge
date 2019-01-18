@@ -9,7 +9,7 @@ docker build -t marketplace .
 
 And then run the container:
 ```
-docker run -d -p 8000:8000 marketplace
+docker run -d -p 8000:8000 --name marketplace marketplace
 ```
 
 ### Usage:
